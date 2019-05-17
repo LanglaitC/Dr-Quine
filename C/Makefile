@@ -6,7 +6,7 @@
 #    By: clanglai <clanglai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 14:17:06 by clanglai          #+#    #+#              #
-#    Updated: 2019/05/16 15:30:36 by clanglai         ###   ########.fr        #
+#    Updated: 2019/05/16 17:37:24 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,22 +25,22 @@ OBJ_FILES=	Sully*.o \
 all: colleen grace sully
 
 colleen: $(COLLEEN_OUT)
-	$(CC) -o $(COLLEEN_OUT) $(COLLEEN_SRC)
+	@$(CC) -o $(COLLEEN_OUT) $(COLLEEN_SRC)
 
 $(COLLEEN_OUT): $(COLLEEN_SRC)
-	$(CC) -o $@ -c $<
+	@echo "Compiling $@"
+	@$(CC) -o $@ -c $<
 
 grace: $(GRACE_OUT)
-	$(CC) -o $(GRACE_OUT) $(GRACE_SRC)
+	@$(CC) -o $(GRACE_OUT) $(GRACE_SRC)
 
 sully: $(SULLY_OUT)
-	$(CC) -o $(SULLY_OUT) $(SULLY_SRC)
+	@$(CC) -o $(SULLY_OUT) $(SULLY_SRC)
 
 clean:
-	rm -rf $(OBJ_FILES)
+	@rm -rf $(OBJ_FILES)
 
 fclean: clean
-	rm -rf $(COLLEEN_OUT) $(GRACE_OUT) $(SULLY_OUT)
+	@rm -rf $(COLLEEN_OUT) $(GRACE_OUT) $(SULLY_OUT)
 
-re:
-	fclean all
+re: fclean all
