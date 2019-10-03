@@ -32,6 +32,14 @@ On compte aussi 16 registres XMMM qui font 128 bits nommées :
 
 XMM0 ... XMM15
 
+#### Ordre des registres
+
+Lors de l'appel d'une fonction les registres sont appelés dans l'ordre suivant
+
+rdi, rsi, rdx, rcx, r8, r9
+
+
+
 #### Sources
 
 https://cs.lmu.edu/~ray/notes/nasmtutorial/
