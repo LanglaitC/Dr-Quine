@@ -10,40 +10,37 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC= nasm -f macho64
-CC2= gcc -g
-TEST_SRC=Test.s
-TEST_OUT=Test
-COLLEEN_SRC=Colleen.s
-COLLEEN_OUT=Colleen
-GRACE_SRC=Grace.s
-GRACE_OUT=Grace
-SULLY_SRC=Sully.s
-SULLY_OUT=Sully
-OBJ_FILES=	Sully*.o \
-			Grace.o \
-			Collen.o
+CC=nasm -f macho64
+CC2=gcc
 
+COLLEEN_SRC=Colleen.s
+GRACE_SRC=Grace.s
+SULLY_SRC=Sully.s
+
+COLLEEN_OUT=Colleen
+GRACE_OUT=Grace
+SULLY_OUT=Sully
+
+COLLEEN_OBJ=$(COLLEEN_SRC:.s=.o)
+GRACE_OBJ=$(GRACE_SRC:.s=.o)
+SULLY_OBJ=$(SULLY_SRC:.s=.o)
 
 all: colleen grace sully
 
-colleen: $(COLLEEN_OUT)
-	@$(CC) $(COLLEEN_SRC) && $(CC2) -o $(COLLEEN_OUT) $(COLLEEN_OUT).o 
+%.o:%.s
+	@$(CC) $<
 
-%.o: %.c
-	$(CC) -o $@ -c $<
+colleen: $(COLLEEN_OBJ)
+	@gcc $(COLLEEN_OBJ) -o $(COLLEEN_OUT)
 
-grace: $(GRACE_OUT)
-	@$(CC) $(GRACE_SRC) && $(CC2) -o $(GRACE_OUT) $(GRACE_OUT).o 
+grace: $(GRACE_OBJ)
+	@gcc $(GRACE_OBJ) -o $(GRACE_OUT)
 
-sully: $(SULLY_OUT)
-	@$(CC) $(SULLY_SRC) && $(CC2) -o $(SULLY_OUT) $(SULLY_OUT).o 
-
-test: $(TEST_OUT)
-	@$(CC) $(TEST_SRC) && $(CC2) -o $(TEST_OUT) $(TEST_OUT).o
+sully: $(SULLY_OBJ)
+	@gcc $(SULLY_OBJ) -o $(SULLY_OUT)
 
 clean:
-	rm -rf $(OBJ_FILES)
+	rm -rf $(COLLEEN_OBJ) $(GRACE_OBJ) $(SULLY_OBJ)
 
 fclean: clean
 	rm -rf $(COLLEEN_OUT) $(GRACE_OUT) $(SULLY_OUT)
