@@ -45,5 +45,4 @@ clean:
 fclean: clean
 	rm -rf $(COLLEEN_OUT) $(GRACE_OUT) $(SULLY_OUT)
 
-re:
-	fclean all
+re: fclean all
